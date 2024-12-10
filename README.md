@@ -68,5 +68,4 @@ On this webpage the WiFi SSID, WiFi password, vMix hostname, tally number, LED c
 ![WebGUI](https://github.com/pvtex/vTally32-Multi/raw/master/images/web.png)
 
 ## Pictures of the shield PCB
-
-![PCB_2D](https://github.com/pvtex/vTally32-Multi/raw/master/shield/PCB_2D.PNG) ![PCB_3D](https://github.com/pvtex/vTally32-Multi/raw/master/shield/PCB_3D.PNG)
+![PCB_2D](https://github.com/pvtex/vTally32-Multi/blob/main/shield/PCB_2D.png?raw=true) ![PCB_3D](https://github.com/pvtex/vTally32-Multi/blob/main/shield/PCB_3D.png?raw=true)
