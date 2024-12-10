@@ -3,13 +3,13 @@
 
 This is a VISCA converter based on an esp32 and the vMix TCP API.
 It can convert 4 VISCA UDP Control Signals to VISCA over serial.
-It is tested on a cisco PHD1080p12x camera.
+It is tested on cisco PHD1080p12x cameras.
 
 ## Installation
 
 ### Hardware
 
-To use it as tally you need a WT32-ETH01 mini board and a spezial Add On shield.  
+To use it as tally you need a WT32-ETH01 board and a spezial Add On shield.  
 For using the converter function you need the shield, see folder shield.
 
 ### Software
