@@ -1,0 +1,49 @@
+#include "WiFi.h"
+#include "AsyncUDP.h"
+#include "Arduino.h"
+
+const char * ssid = "xxxxxxxxx";
+const char * password = "yyyyyyyyyyyyy";
+
+AsyncUDP udp;
+
+IPAddress multicast_address_1 = IPAddress(224, 1, 1, 1);
+uint16_t udp_port_1 = 6000;
+IPAddress multicast_address_2 = IPAddress(224, 1, 1, 10);
+uint16_t udp_port_2 = 6000;
+
+void setup() {
+    Serial.begin(115200);
+    WiFi.mode(WIFI_STA);
+    WiFi.begin(ssid, password);
+
+    if (WiFi.waitForConnectResult() != WL_CONNECTED) {
+        Serial.println("WiFi Failed");
+        while(1) {
+            delay(1000);
+        }
+    }
+
+    Serial.println("WiFi OK");
+
+    udp.listenMulticast(multicast_address_1, udp_port_1);
+    udp.listenMulticast(multicast_address_2, udp_port_2);
+
+    udp.onPacket([](AsyncUDPPacket packet) {
+      if (packet.isMulticast() & packet.localIP() == multicast_address_1) {
+        Serial.printf("RX1: %s\n", packet.data());
+        char *datatx1 = "HELLO 1";
+        udp.writeTo((uint8_t *)datatx1, strlen(datatx1), multicast_address_1, udp_port_1);
+      }
+      if (packet.isMulticast() & packet.localIP() == multicast_address_2) {
+        Serial.printf("RX2: %s\n", packet.data());
+        char *datatx2 = "HELLO 2";
+        udp.writeTo((uint8_t *)datatx2, strlen(datatx2), multicast_address_2, udp_port_2);
+      }
+    });
+}
+
+void loop()
+{
+    delay(10);
+}
